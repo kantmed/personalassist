@@ -1,0 +1,40 @@
+<div {{ attributes }}>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{{ path('main.index') }}">مساعد منزلي</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link {{ app.request.attributes.get('_route')=='main.index' ? 'active':'' }}" aria-current="page"
+                  href="{{ path('main.index') }}">الرئيسية</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {{ app.request.attributes.get('_route')=='groupe.index' ? 'active':'' }}"
+                  href="{{ path('groupe.index') }}">المجموعات</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {{ app.request.attributes.get('_route')=='categorie.index' ? 'active':'' }}"
+                  href="{{ path('categorie.index') }}">الفئات</a>
+              </li>
+              {# <li class="nav-item">
+                <a class="nav-link {{ app.request.attributes.get('_route')=='operation.index' ? 'active':'' }}"
+                  href="{{ path('operation.index') }}">العمليات</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {{ app.request.attributes.get('_route')=='article.index' ? 'active':'' }}"
+                  href="{{ path('article.index') }}">العناصر</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {{ app.request.attributes.get('_route')=='journal.index' ? 'active':'' }}"
+                  href="{{ path('journal.index') }}">اليومية</a>
+              </li> #}
+      
+            </ul>
+          </div>
+        </div>
+      </nav>
+</div>
