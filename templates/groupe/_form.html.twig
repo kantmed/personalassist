@@ -1,0 +1,20 @@
+
+    {{ form_start(form, {
+    attr: {
+    'data-action': 'live#action',
+    'data-live-action-param': 'prevent|save',
+    }
+    }) }}
+    <tr>
+        <td>
+            {{ form_row(form.intitule) }}
+
+        </td>
+        <td>
+            <button type="submit" class="btn btn-primary btn-sm">حفظ</button>
+
+        </td>
+
+    </tr>
+
+    {{ form_end(form) }}

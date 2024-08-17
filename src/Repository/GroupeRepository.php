@@ -16,6 +16,22 @@ class GroupeRepository extends ServiceEntityRepository
         parent::__construct($registry, Groupe::class);
     }
 
+    public function findByQuery(string $query): array
+    {
+
+
+        return $this->createQueryBuilder('g')
+            ->leftJoin('g.categories', 'c')
+            ->leftJoin('c.articles', 'a')
+            ->leftJoin('a.journals', 'j')
+            ->leftJoin('j.operation', 'o')
+            ->select('NEW App\\DTO\\GroupeDTO(g.id,g.intitule,SUM(j.debit),SUM(j.credit),o.date)')
+            ->where('o.date LIKE :date')
+            ->setParameter('date', $query . '%')
+            ->groupBy('g.id')
+            ->getQuery()
+            ->getResult();
+    }
     //    /**
     //     * @return Groupe[] Returns an array of Groupe objects
     //     */

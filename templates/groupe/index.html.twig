@@ -1,9 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello GroupeController!{% endblock %}
+{% block title %}
+  Hello GroupeController!
+{% endblock %}
 
 {% block body %}
-<h1>المجموعات</h1>
-<a href="{{ path('main.index')}}">الرئيسية</a>
+ 
 
+  {{ component('Groupe:GroupeIndex') }}
 {% endblock %}
