@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block body %}
+  <main class="container">
+    <div class="card">
+      <div class="card-header bg-black text-center text-white">
+        <h3>المجموعات</h3>
+      </div>
+      <div class="card-body">{{ component('Article:ArticleCreate') }}</div>
+    </div>
+  </main>
+{% endblock %}
