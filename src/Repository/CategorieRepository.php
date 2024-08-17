@@ -16,6 +16,24 @@ class CategorieRepository extends ServiceEntityRepository
         parent::__construct($registry, Categorie::class);
     }
 
+    
+    public function findByQuery(string $query): array
+    {
+
+
+        return $this->createQueryBuilder('c')
+            ->leftJoin('c.articles', 'a')
+            ->leftJoin('a.journals', 'j')
+            ->leftJoin('j.operation', 'o')
+            ->select('NEW App\\DTO\\GroupeDTO(c.id,c.intitule,SUM(j.debit),SUM(j.credit))')
+            ->where('o.date LIKE :date')
+            ->setParameter('date', $query . '%')
+            ->groupBy('c.id')
+            ->getQuery()
+            ->getResult();
+    }
+
+
     //    /**
     //     * @return Categorie[] Returns an array of Categorie objects
     //     */

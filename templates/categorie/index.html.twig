@@ -1,8 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CategorieController!{% endblock %}
+{% block title %}
+  عرض الفئات
+{% endblock %}
 
 {% block body %}
-<h1>الفئات</h1>
-<a href="{{ path('main.index')}}">الرئيسية</a>
+  {{ component('Categorie:CategorieIndex') }}
 {% endblock %}

@@ -10,7 +10,7 @@
             <input class="form-control" type="search" data-model="query" />
           </div>
           <div class="col-2">
-            <a href="{{ path('groupe.create') }}"><i class="bi bi-plus-square-fill h1 text-success float-start"></i></a>
+            <a href="{{ path('categorie.create') }}"><i class="bi bi-plus-square-fill h1 text-success float-start"></i></a>
           </div>
         </div>
       </div>
@@ -27,14 +27,14 @@
               </tr>
             </thead>
             <tbody>
-              {% for gro in this.groupes %}
+              {% for cat in this.categories %}
                 <tr>
-                  <td>{{ gro.intitule }}</td>
-                  <td>{{ gro.debit|number_format(2, ',', '.') }}</td>
-                  <td>{{ gro.credit|number_format(2, ',', '.') }}</td>
-                  <td>{{ (gro.debit - gro.credit)|number_format(2, ',', '.') }}</td>
+                  <td>{{ cat.intitule }}</td>
+                  <td>{{ cat.debit|number_format(2, ',', '.') }}</td>
+                  <td>{{ cat.credit|number_format(2, ',', '.') }}</td>
+                  <td>{{ (cat.debit - cat.credit)|number_format(2, ',', '.') }}</td>
                   <td>
-                    <a href="{{ path('groupe.edit', { id: gro.id }) }}"><i class="bi bi-pencil-square h2 text-success"></i></a>
+                    <a href="{{ path('categorie.edit', { id: cat.id }) }}"><i class="bi bi-pencil-square h2 text-success"></i></a>
                   </td>
                 </tr>
               {% endfor %}
@@ -45,4 +45,3 @@
     </div>
   </main>
 </div>
-
