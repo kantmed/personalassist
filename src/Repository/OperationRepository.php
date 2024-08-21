@@ -16,28 +16,23 @@ class OperationRepository extends ServiceEntityRepository
         parent::__construct($registry, Operation::class);
     }
 
-    //    /**
-    //     * @return Operation[] Returns an array of Operation objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('o')
-    //            ->andWhere('o.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('o.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    public function findByQuery(string $query): array
+    {
 
-    //    public function findOneBySomeField($value): ?Operation
-    //    {
-    //        return $this->createQueryBuilder('o')
-    //            ->andWhere('o.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+        return $this->createQueryBuilder('o')
+            ->leftJoin('o.journals', 'j')
+            ->select('NEW App\\DTO\\OperationDTO(o.id,o.numero,o.type,o.date,SUM(j.debit),SUM(j.credit))')
+            ->where('o.date LIKE :date')
+            ->setParameter('date', $query . '%')
+            ->groupBy('o.id')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findCurrentNumero()
+    {
+        $operations = $this->findAll();
+        $ope = end($operations);
+        return $ope->getNumero() + 1;
+    }
 }

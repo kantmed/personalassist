@@ -1,0 +1,30 @@
+<style>
+  table {
+    border-collapse: collapse;
+  }
+</style>
+
+<h1>Articles periode : {{ periode }}</h1>
+
+<table border="1.2">
+  <thead>
+    <tr>
+      <th>Designation</th>
+      <th>Debit</th>
+      <th>Credit</th>
+      <th>Solde</th>
+      <th>rowspan</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in articles %}
+      <tr>
+        <td>{{ item.intitule }}</td>
+        <td>{{ item.debit }}</td>
+        <td>{{ item.credit }}</td>
+        <td style="border-bottom: 2;">{{ item.solde }}</td>
+        <td></td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>

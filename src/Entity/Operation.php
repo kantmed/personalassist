@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 class Operation
 {
     const TYPES = array('صرف' => 0, 'فبض' => 1,   'تحويل' => 2,   'اخر' => 3);
-
+    const COLEURS = array('D80032' => 0, '0E21A0' => 1,   '793FDF' => 2,   'F94C10' => 3);
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]

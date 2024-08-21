@@ -1,0 +1,66 @@
+<div {{ attributes }}>
+  <section class="container-md">
+    <div class="row mx-2 mt-2">
+      <div class="col-2">
+        <a href="{{ path('operation.create') }}"><i class="bi bi-plus-square-fill h1 text-primary"></i></a>
+      </div>
+      <div class="col-10">
+        <input class="form-control" type="search" data-model="query" />
+      </div>
+    </div>
+
+    {% for ope in this.operations %}
+      <div class="table-responsive container-md">
+        <table class="table">
+          {% set custom = 'style="color: white; background-color: #' ~ ope.coleur ~ '"' %}
+          <thead style="background-color: blueviolet;">
+            <tr>
+              <th {{ custom|raw }}>{{ ope.date|date('d/m/Y') }}</th>
+              <th {{ custom|raw }}>{{ ope.numero }}</th>
+              <th {{ custom|raw }}>{{ ope.type }}</th>
+              <th {{ custom|raw }}>{{ ope.solde|number_format(2, ',', '.') }}</th>
+              <th {{ custom|raw }}>
+                <a href="{{ path('operation.edit', { id: ope.id }) }}"><i class="bi bi-pencil-square h2 text-white"></i></a>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <div class="table-responsive container-md">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>التعيين</th>
+                    <th>المدين</th>
+                    <th>الدائن</th>
+                    <th>الملاحظات</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for jou in ope.journals %}
+                    <tr>
+                      <td>{{ jou.article }}</td>
+                      <td>{{ jou.debit|number_format(2, ',', '.') }}</td>
+                      <td>{{ jou.credit|number_format(2, ',', '.') }}</td>
+                      <td>{{ jou.description }}</td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td></td>
+                    <td>{{ ope.debit|number_format(2, ',', '.') }}</td>
+                    <td>{{ ope.credit|number_format(2, ',', '.') }}</td>
+                    <td></td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </tbody>
+        </table>
+      </div>
+      {# {% if ope.debit - ope.credit > 0 or (journals|length) == 0 %}
+        <a href="{{ path('journal.create', { id: ope.id }) }}" class="btn btn-primary">اضافة سجل</a>
+      {% endif %} #}
+    {% endfor %}
+  </section>
+</div>

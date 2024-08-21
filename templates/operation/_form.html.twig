@@ -1,0 +1,54 @@
+{{ form_start(form, {
+attr: {
+'data-action': 'live#action',
+'data-live-action-param': 'prevent|save'
+}
+}) }}
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-2">
+                {{ form_row(form.numero) }}
+            </div>
+            <div class="col-md-2">
+                {{ form_row(form.date) }}
+            </div>
+            <div class="col-md-8">
+                {{ form_row(form.type) }}
+            </div>
+        </div>
+    </div>
+
+    {% for key, itemForm in form.journals %}
+    <div class="row">
+        <div class="col-md-3">
+            {{ form_row(itemForm.article) }}
+        </div>
+        <div class="col-md-2">
+            {{ form_row(itemForm.debit) }}
+        </div>
+        <div class="col-md-2">
+            {{ form_row(itemForm.credit) }}
+        </div>
+        <div class="col-md-4">
+            {{ form_row(itemForm.description) }}
+        </div>
+        <div class="col-md-1">
+            {{ form_row(itemForm.vars.button_delete, {label: 'X', attr: {class: 'btn btn-outline-danger
+            float-start'}})
+            }}
+
+        </div>
+    </div>
+
+    {% endfor %}
+    {{ form_widget(form.journals.vars.button_add, {label: 'اضافة سجل', attr: {class: 'btn btn-outline-primary h1'}})
+    }}
+</div>
+<div class="card-footer">
+    <button type="submit" class="btn btn-success" formnovalidate>حفظ</button>
+</div>
+
+</div>
+{{ form_end(form,{render_rest:false}) }}

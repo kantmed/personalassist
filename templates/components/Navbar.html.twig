@@ -18,10 +18,10 @@
             <a class="nav-link {{ app.request.attributes.get('_route') == 'article.index' ? 'active' : '' }}" href="{{ path('article.index') }}">العناصر</a>
           </li>
 
-          {# <li class="nav-item">
-                <a class="nav-link {{ app.request.attributes.get('_route')=='operation.index' ? 'active':'' }}"
-                  href="{{ path('operation.index') }}">العمليات</a>
-              </li>
+          <li class="nav-item">
+            <a class="nav-link {{ app.request.attributes.get('_route') == 'operation.index' ? 'active' : '' }}" href="{{ path('operation.index') }}">العمليات</a>
+          </li>
+          {# 
               <li class="nav-item">
                 <a class="nav-link {{ app.request.attributes.get('_route')=='journal.index' ? 'active':'' }}"
                   href="{{ path('journal.index') }}">اليومية</a>

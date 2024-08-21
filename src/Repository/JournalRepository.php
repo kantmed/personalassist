@@ -16,28 +16,18 @@ class JournalRepository extends ServiceEntityRepository
         parent::__construct($registry, Journal::class);
     }
 
-    //    /**
-    //     * @return Journal[] Returns an array of Journal objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('j')
-    //            ->andWhere('j.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('j.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    public function findByOperation($numero)
+     { 
+        return $this->createQueryBuilder('j')
+        ->leftJoin('j.operation','o')
+        ->leftJoin('j.article','a')
+        ->select('NEW App\\DTO\\OpeJournalsDTO(j.debit,j.credit,a.intitule,j.description)')
+        ->where('o.numero = :numero')
+        ->setParameter('numero',$numero)
+        ->getQuery()
+        ->getResult()
+        ;
+        
+    }
 
-    //    public function findOneBySomeField($value): ?Journal
-    //    {
-    //        return $this->createQueryBuilder('j')
-    //            ->andWhere('j.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
 }
